@@ -37,3 +37,6 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 110
 exclude = ["notebooks"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["forecasting", "api"]
