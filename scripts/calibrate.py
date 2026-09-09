@@ -40,8 +40,8 @@ def main() -> None:
     train_run_id = latest_train_run(client)
     model_dir = mlflow.artifacts.download_artifacts(f"runs:/{train_run_id}/model")
     model = TiDEForecaster.load(f"{model_dir}/tide_model.pt")
-
-    with mlflow.start_run(run_name="calibrate") as run:
+    
+    with mlflow.start_run(run_name="calibrate"):
         mlflow.log_param("trained_from_run_id", train_run_id)
 
         calibrator = calibrate_model(dataset, model)

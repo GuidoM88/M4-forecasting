@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import mlflow
 
-from forecasting.conformal.calibration import ConformalCalibrator
 from forecasting.config import settings
+from forecasting.conformal.calibration import ConformalCalibrator
 from forecasting.models.tide_model import TiDEForecaster
 
 

@@ -25,7 +25,7 @@ class ConformalCalibrator:
         self.q_abs: np.ndarray | None = None
         self.q_signed: np.ndarray | None = None
 
-    def fit(self, residuals: np.ndarray) -> "ConformalCalibrator":
+    def fit(self, residuals: np.ndarray) -> ConformalCalibrator:
         residuals = np.asarray(residuals, dtype=float)
         horizon = residuals.shape[1]
         self.q_abs = np.array(
@@ -51,7 +51,7 @@ class ConformalCalibrator:
         np.savez(path, q_abs=self.q_abs, q_signed=self.q_signed)
 
     @classmethod
-    def load(cls, path: str, coverage_level: float, critical_ratio: float) -> "ConformalCalibrator":
+    def load(cls, path: str, coverage_level: float, critical_ratio: float) -> ConformalCalibrator:
         data = np.load(path)
         calibrator = cls(coverage_level, critical_ratio)
         calibrator.q_abs = data["q_abs"]

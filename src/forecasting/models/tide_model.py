@@ -40,7 +40,7 @@ class TiDEForecaster:
         std = std if std > 0 else 1.0
         return (values - mean) / std, mean, std
 
-    def fit(self, series: list[np.ndarray], max_samples_per_ts: int | None = None) -> "TiDEForecaster":
+    def fit(self, series: list[np.ndarray], max_samples_per_ts: int | None = None) -> TiDEForecaster:
         scaled = [self._scale(s)[0].astype(np.float32) for s in series]
         ts = [TimeSeries.from_values(s) for s in scaled]
         self.model.fit(series=ts, max_samples_per_ts=max_samples_per_ts)
@@ -59,7 +59,7 @@ class TiDEForecaster:
         self.model.save(path)
 
     @classmethod
-    def load(cls, path: str) -> "TiDEForecaster":
+    def load(cls, path: str) -> TiDEForecaster:
         instance = cls.__new__(cls)
         instance.model = TiDEModel.load(path)
         return instance

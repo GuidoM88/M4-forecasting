@@ -23,7 +23,7 @@ class Predictor:
         self.model_version = model_version
 
     @classmethod
-    def load(cls) -> "Predictor":
+    def load(cls) -> Predictor:
         mlflow.set_tracking_uri(settings.mlflow_tracking_uri)
         client = MlflowClient()
 
